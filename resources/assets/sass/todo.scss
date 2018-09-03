@@ -1,0 +1,391 @@
+
+/****************** RESET ***********************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/****************** GLOBALS ***********************/
+
+body{
+	font-family: 'Open Sans', sans-serif;
+	background: #f5f5f5;
+	overflow-y: scroll;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+.wrap{
+	width: 960px;
+	margin: 0 auto;
+}
+
+.clear:after{
+	content: '';
+	display: block;
+	height:0;
+	visibility: hidden;
+	clear: both;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+h1{
+	font-size: 25px;
+	font-weight: 300;
+}
+
+h2{}
+
+h3{
+	font-size: 26px;
+    font-weight: 300;
+}
+
+
+/****************** HEADER ***********************/
+
+#header{
+	padding: 20px 0;
+	h1{
+		text-align: center;
+	}
+}
+
+
+/****************** NAVIGATION ***********************/
+
+
+
+
+/****************** FOOTER ***********************/
+
+
+/****************** CONTENT ***********************/
+
+.content{
+	position: relative;
+	z-index: 1;
+}
+
+.todos-wrap{
+	background: #fff;
+	padding: 15px 30px 30px;
+	border-top: solid 5px $teal;
+	margin: 0 0 40px 0;
+	.todos-head{
+		border-bottom: solid $light-gray 1px;
+		padding: 10px 0;
+		.todo-add{
+			cursor: pointer;
+			&:focus{
+				outline: none;
+			}
+		}
+		.todoFilter{
+			height: 28px;
+			margin: 0 0 0 20px;
+			font-family: "Open Sans", sans-serif;
+		}
+	}
+	.todos{
+		ul{
+			li{
+				border-bottom: solid $light-gray 1px;
+				padding: 10px 0;
+				min-height: 19px;
+				.todo-item{
+					display: flex;
+					.todo-item-con{
+						flex: 1.5;
+					}
+					.todo-item-title{
+						flex: 3;
+					}
+					.todo-details{
+						.todo-estimate-txt{
+							font-size: 14px;
+						}
+						.todo-status{
+							font-size: 11px;
+							padding: 0 3px;
+							line-height: 18px;
+							display: inline-block;
+							background: #7bdcc1;
+							color: #fff;
+						}
+						.todo-estimate-status{
+							font-size: 11px;
+							padding: 0 3px;
+							line-height: 18px;
+							display: inline-block;
+							background: #ff5858;
+							color: #fff;
+						}
+					}
+					.todo-item-action{
+						flex: .6;
+						text-align: right;
+						.todo-edit{
+							color: #7bdcc1;
+							text-decoration: none;
+						}
+						.todo-del{
+							color: #ff5858;
+							text-decoration: none;
+						}
+					}
+				}
+
+			}
+		}
+	}
+		
+	
+}
+
+.todo-btn{
+	background: $teal;
+    border: 0;
+    padding: 10px 10px;
+    color: #fff;
+}
+
+.todo-modal{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow-y: scroll;
+    opacity: 0;
+    background: #00000085;
+	.todo-modal-in{
+		position: relative;
+		background: #fff;
+		width: 400px;
+		margin: 30px auto 30px auto;
+		padding: 20px 20px;
+		box-sizing: border-box;
+		top: -1000px;
+		transition: top .4s;
+		label{
+			display: block;
+			margin: 0 0 8px 0;
+		}
+		.close{
+			position: absolute;
+			right: 0;
+			top: 0;
+			background: #ff5858;
+			color: #fff;
+			padding: 5px 10px 8px 10px;
+			cursor:pointer;
+		}
+		.todo-btn{
+			width: 100%;
+			cursor: pointer;
+		}
+	}
+
+}
+
+span.required{
+	color: #ff5858;
+}
+
+input.required{
+	border: solid #ff5858 1px;
+}
+
+.todo-overlay{
+	background: #00000069;
+	position: fixed;
+	left: 0;
+	right:0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: -1;
+}
+
+body.modal{
+	overflow: hidden !important;
+	padding: 0 17px 0 0;
+	.todo-modal{
+		z-index: 999999;
+		opacity: 1;
+		.todo-modal-in{
+			top: 0;
+		}
+	}
+	.todo-overlay{
+		opacity: 1;
+		z-index: 999998;
+	}
+}
+
+.todo-form-row{
+	margin: 0 0 10px 0;
+}
+
+.todo-input{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	padding: 5px 8px;
+	box-sizing: border-box;
+	font-size: 15px;
+	width: 100%;
+}
+
+.xdsoft_datetimepicker{
+	z-index: 999999 !important;
+}
+
+
+
+.todo-checkbox {
+	position: absolute; 
+	opacity: 0; 
+	& + label {
+		position: relative;
+		cursor: pointer;
+		padding: 0;
+	}
+	& + label:before {
+		content: '';
+		margin-right: 10px;
+		display: inline-block;
+		vertical-align: text-top;
+		width: 20px;
+		height: 20px;
+		border: solid #7bdcc1 2px;
+		box-sizing: border-box;
+		border-radius: 100%;
+	}
+	&:checked + label:before {
+		background: #fff;
+	}
+	&:checked + label:after {
+		content: '';
+		position: absolute;
+		left: 5px;
+		top: 9px;
+		background: #7bdcc1;
+		width: 2px;
+		height: 2px;
+		box-shadow: 
+			2px 0 0 #7bdcc1,
+			4px 0 0 #7bdcc1,
+			4px -2px 0 #7bdcc1,
+			4px -4px 0 #7bdcc1,
+			4px -6px 0 #7bdcc1,
+			4px -8px 0 #7bdcc1;
+		transform: rotate(45deg);
+	}
+}
+
+/****************** RESPONSIVE ***********************/
+
+@media screen and (max-width: 960px){
+	.wrap{
+		width: 97%;
+		.todo-item-title{
+			flex: 2.5 !important;
+		}
+		.todo-item-action{
+			flex: 1 !important;
+		}
+	}
+}
+
+@media screen and (max-width: 767px){}
+
+
+@media screen and (max-width: 480px){
+	.todo-item{
+		display: block !important;
+    	line-height: 33px;
+	}
+	.todo-item-con{
+		display: block !important;
+		flex: none !important;
+		font-size: 20px;
+	}
+	.todo-details{
+		margin: 0;
+		padding: 0 0 0 25px;
+
+	}
+	.todo-item-title{
+		margin: 0;
+		font-weight: 600;
+		
+	}
+	.todo-estimate-txt{
+		font-size: 20px !important;
+	}
+	.wrap .todo-item-action {
+		width: 100%;
+		text-align: left !important;
+		flex: none !important;
+		padding: 0 0 0 25px;
+	}
+	.todo-checkbox:checked + label:after,
+	.todo-checkbox:checked + label:before{
+		margin-top: 5px;
+	}
+	.todo-modal .todo-modal-in{
+		width: 90%;
+	}
+}
+
+
